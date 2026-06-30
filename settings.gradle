@@ -1,6 +1,5 @@
 include ':TMessagesProj'
 include ':TMessagesProj_App'
-include ':TMessagesProj_AppHuawei'
-include ':TMessagesProj_AppHockeyApp'
-include ':TMessagesProj_AppStandalone'
-include ':TMessagesProj_AppTests'
+
+//корооче смотри, там должена быть кнопка "Уголок yeGram", как сейчас "На Telegram-канал", "Поддержать разработку", "Проверить обновления". а уже нажав на "Уголок yeGram" с
+//  подзаголовком "Информация о клиенте и проверка обновлений". Открывается доп экран допустим как "Аккаунт" и уже там "Наш Telegram-канал", "Поддержать разработку" и тд.

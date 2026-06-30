@@ -177,6 +177,11 @@ public class VideoAds {
     private void load() {
         if (loading || loaded) return;
 
+        // yeGram: never load video ads.
+        if (true) {
+            return;
+        }
+
         if (UserConfig.getInstance(currentAccount).isPremium() && MessagesController.getInstance(currentAccount).isSponsoredDisabled()) {
             return;
         }

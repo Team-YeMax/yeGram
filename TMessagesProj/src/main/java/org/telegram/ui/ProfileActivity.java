@@ -639,6 +639,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     private int clearLogsRow;
     private int switchBackendRow;
     private int versionRow;
+    private int yegramCornerHeaderRow;
+    private int yegramChannelRow;
+    private int yegramSupportRow;
+    private int yegramUpdateRow;
+    private int yegramCornerSectionRow;
     private int emptyRow;
     private int emptyRow2;
     private int bottomPaddingRow;
@@ -4533,6 +4538,12 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 showDialog(builder1.create());
             } else if (position == languageRow) {
                 presentFragment(new LanguageSelectActivity());
+            } else if (position == yegramChannelRow) {
+                Browser.openUrl(getParentActivity(), "https://t.me/yeGramOfficial");
+            } else if (position == yegramSupportRow) {
+                Browser.openUrl(getParentActivity(), "https://pay.cloudtips.ru/p/0c7fb861");
+            } else if (position == yegramUpdateRow) {
+                YeGramUpdater.checkForUpdates(getParentActivity(), resourcesProvider);
             } else if (position == setUsernameRow) {
                 presentFragment(new ChangeUsernameActivity());
             } else if (position == bioRow) {
@@ -10405,6 +10416,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         clearLogsRow = -1;
         switchBackendRow = -1;
         versionRow = -1;
+        yegramCornerHeaderRow = -1;
+        yegramChannelRow = -1;
+        yegramSupportRow = -1;
+        yegramUpdateRow = -1;
+        yegramCornerSectionRow = -1;
         botAppRow = -1;
         botPermissionsHeader = -1;
         botPermissionBiometry = -1;
@@ -10527,6 +10543,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     setAvatarRow = rowCount++;
                     setAvatarSectionRow = rowCount++;
                 }
+                yegramCornerHeaderRow = rowCount++;
+                yegramChannelRow = rowCount++;
+                yegramSupportRow = rowCount++;
+                yegramUpdateRow = rowCount++;
+                yegramCornerSectionRow = rowCount++;
                 numberSectionRow = rowCount++;
                 numberRow = rowCount++;
                 setUsernameRow = rowCount++;
@@ -13318,6 +13339,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         headerCell.setText(LocaleController.getString(R.string.SettingsDebug));
                     } else if (position == botPermissionsHeader) {
                         headerCell.setText(LocaleController.getString(R.string.BotProfilePermissions));
+                    } else if (position == yegramCornerHeaderRow) {
+                        headerCell.setText(LocaleController.getString(R.string.YeGramCornerHeader));
                     }
                     headerCell.setTextColor(dontApplyPeerColor(getThemedColor(Theme.key_windowBackgroundWhiteBlueHeader), false));
                     break;
@@ -13563,6 +13586,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     TextCell textCell = (TextCell) holder.itemView;
                     textCell.setColors(Theme.key_windowBackgroundWhiteGrayIcon, Theme.key_windowBackgroundWhiteBlackText);
                     textCell.setTag(Theme.key_windowBackgroundWhiteBlackText);
+                    textCell.setSubtitle(null);
                     if (position == settingsTimerRow) {
                         TLRPC.EncryptedChat encryptedChat = getMessagesController().getEncryptedChat(DialogObject.getEncryptedChatId(dialogId));
                         String value;
@@ -13693,6 +13717,15 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     } else if (position == languageRow) {
                         textCell.setTextAndValueAndIcon(LocaleController.getString(R.string.Language), LocaleController.getCurrentLanguageName(), false, R.drawable.msg2_language, false);
                         textCell.setImageLeft(23);
+                    } else if (position == yegramChannelRow) {
+                        textCell.setTextAndIcon(LocaleController.getString(R.string.YeGramChannelTitle), R.drawable.msg_channel, true);
+                        textCell.setSubtitle(LocaleController.getString(R.string.YeGramChannelSubtitle));
+                    } else if (position == yegramSupportRow) {
+                        textCell.setTextAndIcon(LocaleController.getString(R.string.YeGramSupportTitle), R.drawable.menu_feature_paid, true);
+                        textCell.setSubtitle(LocaleController.getString(R.string.YeGramSupportSubtitle));
+                    } else if (position == yegramUpdateRow) {
+                        textCell.setTextAndIcon(LocaleController.getString(R.string.YeGramCheckUpdatesTitle), R.drawable.msg_download, false);
+                        textCell.setSubtitle(LocaleController.getString(R.string.YeGramCheckUpdatesSubtitle));
                     } else if (position == notificationRow) {
                         textCell.setTextAndIcon(LocaleController.getString(R.string.NotificationsAndSounds), R.drawable.msg2_notifications, true);
                     } else if (position == privacyRow) {
@@ -14146,7 +14179,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         position == clearLogsRow || position == switchBackendRow || position == setAvatarRow ||
                         position == addToGroupButtonRow || position == premiumRow || position == premiumGiftingRow ||
                         position == businessRow || position == liteModeRow || position == birthdayRow || position == channelRow ||
-                        position == starsRow || position == tonRow;
+                        position == starsRow || position == tonRow ||
+                        position == yegramChannelRow || position == yegramSupportRow || position == yegramUpdateRow;
             }
             if (holder.itemView instanceof UserCell) {
                 UserCell userCell = (UserCell) holder.itemView;
@@ -14172,7 +14206,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         @Override
         public int getItemViewType(int position) {
             if (position == infoHeaderRow || position == membersHeaderRow || position == settingsSectionRow2 ||
-                    position == numberSectionRow || position == helpHeaderRow || position == debugHeaderRow || position == botPermissionsHeader) {
+                    position == numberSectionRow || position == helpHeaderRow || position == debugHeaderRow || position == botPermissionsHeader ||
+                    position == yegramCornerHeaderRow) {
                 return VIEW_TYPE_HEADER;
             } else if (position == phoneRow || position == locationRow || position == numberRow || position == birthdayRow) {
                 return VIEW_TYPE_TEXT_DETAIL;
@@ -14192,7 +14227,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     position == clearLogsRow || position == switchBackendRow || position == setAvatarRow || position == addToGroupButtonRow ||
                     position == addToContactsRow || position == liteModeRow || position == premiumGiftingRow || position == businessRow ||
                     position == botStarsBalanceRow || position == botTonBalanceRow || position == channelBalanceRow || position == botPermissionLocation ||
-                    position == botPermissionBiometry || position == botPermissionEmojiStatus || position == tonRow
+                    position == botPermissionBiometry || position == botPermissionEmojiStatus || position == tonRow ||
+                    position == yegramChannelRow || position == yegramSupportRow || position == yegramUpdateRow
             ) {
                 return VIEW_TYPE_TEXT;
             } else if (position == notificationsDividerRow) {
@@ -14206,7 +14242,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     position == helpSectionCell || position == setAvatarSectionRow || position == passwordSuggestionSectionRow ||
                     position == phoneSuggestionSectionRow || position == premiumSectionsRow || position == reportDividerRow ||
                     position == channelDividerRow || position == graceSuggestionSectionRow || position == balanceDividerRow ||
-                    position == botPermissionsDivider || position == channelBalanceSectionRow || position == unofficialSecurityRiskDividerRow
+                    position == botPermissionsDivider || position == channelBalanceSectionRow || position == unofficialSecurityRiskDividerRow ||
+                    position == yegramCornerSectionRow
             ) {
                 return VIEW_TYPE_SHADOW;
             } else if (position >= membersStartRow && position < membersEndRow) {

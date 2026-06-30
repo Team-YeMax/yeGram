@@ -621,6 +621,9 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
 
         items.add(UItem.asCustomShadow(topView, 200 - 12));
 
+        items.add(SettingCell.Factory.ofPadded(101, IconBackgroundColors.BLUE.top, IconBackgroundColors.BLUE.bottom, R.drawable.settings_devices, getString(R.string.YeGramCornerTitle), getString(R.string.YeGramCornerSubtitle), dp(8)));
+        items.add(UItem.asShadow(null));
+
         accountNumbers.clear();
         for (int a = 0; a < UserConfig.MAX_ACCOUNT_COUNT; a++) {
             if (UserConfig.getInstance(a).isClientActivated() && currentAccount != a) {
@@ -807,6 +810,9 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             return;
         }
         switch (item.id) {
+            case 101:
+                presentSettingFragment(new YeGramCornerActivity());
+                break;
             case 1:
                 presentSettingFragment(new UserInfoActivity());
                 break;
@@ -1181,6 +1187,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         }
 
         private boolean twoLines;
+        private int extraVerticalPadding;
 
         public void set(
             int iconColorTop, int iconColorBottom, int icon,
@@ -1188,6 +1195,17 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             CharSequence subtitle,
             CharSequence value
         ) {
+            set(iconColorTop, iconColorBottom, icon, title, subtitle, value, 0);
+        }
+
+        public void set(
+            int iconColorTop, int iconColorBottom, int icon,
+            CharSequence title,
+            CharSequence subtitle,
+            CharSequence value,
+            int extraVerticalPadding
+        ) {
+            this.extraVerticalPadding = extraVerticalPadding;
             iconLayout.setVisibility(icon != 0 ? View.VISIBLE : View.GONE);
             titleView.setTranslationX(icon == 0 ? dp(2) : 0);
             subtitleView.setTranslationX(icon == 0 ? dp(2) : 0);
@@ -1205,7 +1223,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
             super.onMeasure(
                 MeasureSpec.makeMeasureSpec(MeasureSpec.getSize(widthMeasureSpec), MeasureSpec.EXACTLY),
-                MeasureSpec.makeMeasureSpec(dp(twoLines ? 60 : 50), MeasureSpec.EXACTLY)
+                MeasureSpec.makeMeasureSpec(dp(twoLines ? 60 : 50) + extraVerticalPadding * 2, MeasureSpec.EXACTLY)
             );
         }
 
@@ -1275,8 +1293,15 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     iconColorTop, iconColorBottom, item.iconResId,
                     item.text,
                     item.subtext,
-                    item.textValue
+                    item.textValue,
+                    item.pad
                 );
+            }
+
+            public static UItem ofPadded(int id, int iconColorTop, int iconColorBottom, int icon, CharSequence title, CharSequence subtitle, int extraVerticalPadding) {
+                final UItem item = of(id, iconColorTop, iconColorBottom, icon, title, subtitle, null);
+                item.pad = extraVerticalPadding;
+                return item;
             }
 
             public static UItem of(int id, int iconColorTop, int iconColorBottom, int icon, CharSequence title) {

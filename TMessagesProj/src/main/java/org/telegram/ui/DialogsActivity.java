@@ -6884,7 +6884,44 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    @Override
+    private void showYeGramWelcomeIfNeeded() {
+        if (onlySelect || folderId != 0) {
+            return;
+        }
+        if (getParentActivity() == null) {
+            return;
+        }
+        SharedPreferences prefs = ApplicationLoader.applicationContext.getSharedPreferences("yegram", Context.MODE_PRIVATE);
+        if (prefs.getBoolean("welcome_shown", false)) {
+            return;
+        }
+        int launchCount = prefs.getInt("launch_count", 0) + 1;
+        prefs.edit().putInt("launch_count", launchCount).apply();
+        // Show the welcome dialog on the third onResume.
+        if (launchCount < 3) {
+            return;
+        }
+        prefs.edit().putBoolean("welcome_shown", true).apply();
+
+        // Delay slightly so any other windows opened during onResume are already shown,
+        // then our dialog appears on top of them.
+        AndroidUtilities.runOnUIThread(() -> {
+            if (getParentActivity() == null || isFinishing()) {
+                return;
+            }
+            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+            builder.setTitle(LocaleController.getString(R.string.YeGramWelcomeTitle));
+            builder.setMessage(LocaleController.getString(R.string.YeGramWelcomeMessage));
+            builder.setPositiveButton(LocaleController.getString(R.string.YeGramWelcomeSubscribe), (dialog, which) -> {
+                if (getParentActivity() != null) {
+                    Browser.openUrl(getParentActivity(), "https://t.me/yeGramOfficial");
+                }
+            });
+            builder.setNegativeButton(LocaleController.getString(R.string.YeGramWelcomeSkip), null);
+            showDialog(builder.create());
+        }, 800);
+    }
+
     public void onResume() {
         super.onResume();
         if (dialogStoriesCell != null) {
@@ -6911,6 +6948,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         if (searchViewPager != null) {
             searchViewPager.onResume();
         }
+        showYeGramWelcomeIfNeeded();
         final boolean tosAccepted;
         if (!afterSignup) {
             tosAccepted = getUserConfig().unacceptedTermsOfService == null;

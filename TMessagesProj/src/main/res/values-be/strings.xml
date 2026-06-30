@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="AppName">yeGram</string>
+    <string name="AppNameBeta">yeGram Beta</string>
+    <string name="YeGramWelcomeTitle">Сардэчна запрашаем!</string>
+    <string name="YeGramWelcomeMessage">Дзякуй, што ўсталявалі наш кліент yeGram. Каб атрымліваць навіны і абнаўленні, падпішыцеся на наш канал.</string>
+    <string name="YeGramWelcomeSubscribe">Падпісацца</string>
+    <string name="YeGramWelcomeSkip">Прапусціць</string>
+</resources>

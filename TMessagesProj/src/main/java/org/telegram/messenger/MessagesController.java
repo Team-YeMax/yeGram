@@ -10573,6 +10573,17 @@ public class MessagesController extends BaseController implements NotificationCe
     private long lastCheckPromoInfoTime;
 
     private void checkPromoInfoInternal(boolean reset) {
+        // yeGram: disable sponsored proxy / promo (PSA) dialogs entirely.
+        if (promoDialogId != 0 || promoDialog != null) {
+            promoDialogId = 0;
+            proxyDialogAddress = null;
+            nextPromoInfoCheckTime = getConnectionsManager().getCurrentTime() + 60 * 60;
+            getGlobalMainSettings().edit().putLong("proxy_dialog", 0).remove("proxyDialogAddress").putInt("nextPromoInfoCheckTime", nextPromoInfoCheckTime).commit();
+            AndroidUtilities.runOnUIThread(this::removePromoDialog);
+        }
+        if (true) {
+            return;
+        }
         if (reset && checkingPromoInfo) {
             checkingPromoInfo = false;
         }
@@ -20877,6 +20888,10 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public SponsoredMessagesInfo getSponsoredMessages(long dialogId) {
+        // yeGram: never load or show sponsored (ad) messages in chats/channels.
+        if (true) {
+            return null;
+        }
         SponsoredMessagesInfo info = sponsoredMessages.get(dialogId);
         if (info != null && (info.loading || Math.abs(SystemClock.elapsedRealtime() - info.loadTime) <= 5 * 60 * 1000)) {
             return info;

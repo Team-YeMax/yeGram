@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="AppName">Telegram</string>
-    <string name="AppNameBeta">Telegram Beta</string>
+    <string name="AppName">yeGram</string>
+    <string name="AppNameBeta">yeGram Beta</string>
+    <string name="TelegramVersion">Telegram with yeGram для Android %1$s</string>
+    <string name="YeGramCornerHeader">Уголок yeGram</string>
+    <string name="YeGramCornerTitle">Уголок yeGram</string>
+    <string name="YeGramCornerSubtitle">Информация о клиенте и проверка обновлений</string>
+    <string name="YeGramChannelTitle">Наш Telegram-канал</string>
+    <string name="YeGramChannelSubtitle">Получайте новости и обновления клиента</string>
+    <string name="YeGramSupportTitle">Поддержать разработку</string>
+    <string name="YeGramSupportSubtitle">Разработчику очень приятно, если вы его поддержите</string>
+    <string name="YeGramCheckUpdatesTitle">Проверить обновления</string>
+    <string name="YeGramCheckUpdatesSubtitle">Проверить наличие новой версии на GitHub</string>
+    <string name="YeGramChecking">Проверка обновлений…</string>
+    <string name="YeGramNoUpdates">У вас установлена последняя версия</string>
+    <string name="YeGramUpdateAvailableTitle">Доступно обновление</string>
+    <string name="YeGramUpdateAvailableMessage">Доступна новая версия yeGram %1$s. Скачать и установить?</string>
+    <string name="YeGramUpdateDownload">Скачать</string>
+    <string name="YeGramDownloading">Загрузка обновления…</string>
+    <string name="YeGramUpdateError">Не удалось проверить обновления. Попробуйте позже.</string>
+    <string name="YeGramWelcomeTitle">Добро пожаловать!</string>
+    <string name="YeGramWelcomeMessage">Спасибо что установили наш клиент yeGram, чтобы получать новости и обновления подпишитесь на наш канал.</string>
+    <string name="YeGramWelcomeSubscribe">Подписаться</string>
+    <string name="YeGramWelcomeSkip">Пропустить</string>
     <string name="LanguageName">Русский</string>
     <string name="English">Английский</string>
     <string name="LanguageNameInEnglish">Russian</string>

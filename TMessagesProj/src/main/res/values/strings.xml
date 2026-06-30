@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="AppName">Telegram</string>
-    <string name="AppNameBeta">Telegram Beta</string>
+    <string name="AppName">yeGram</string>
+    <string name="AppNameBeta">yeGram Beta</string>
+    <string name="YeGramCornerHeader">yeGram place</string>
+    <string name="YeGramCornerTitle">yeGram Place</string>
+    <string name="YeGramCornerSubtitle">Client info and update check</string>
+    <string name="YeGramChannelTitle">Our Telegram channel</string>
+    <string name="YeGramChannelSubtitle">Get news and client updates</string>
+    <string name="YeGramSupportTitle">Support development</string>
+    <string name="YeGramSupportSubtitle">The developer really appreciates your support</string>
+    <string name="YeGramCheckUpdatesTitle">Check for updates</string>
+    <string name="YeGramCheckUpdatesSubtitle">Check for a new version on GitHub</string>
+    <string name="YeGramChecking">Checking for updates…</string>
+    <string name="YeGramNoUpdates">You have the latest version installed</string>
+    <string name="YeGramUpdateAvailableTitle">Update available</string>
+    <string name="YeGramUpdateAvailableMessage">A new version of yeGram %1$s is available. Download and install?</string>
+    <string name="YeGramUpdateDownload">Download</string>
+    <string name="YeGramDownloading">Downloading update…</string>
+    <string name="YeGramUpdateError">Couldn\'t check for updates. Please try again later.</string>
+    <string name="YeGramWelcomeTitle">Welcome!</string>
+    <string name="YeGramWelcomeMessage">Thanks for installing our client yeGram. Subscribe to our channel to get news and updates.</string>
+    <string name="YeGramWelcomeSubscribe">Subscribe</string>
+    <string name="YeGramWelcomeSkip">Skip</string>
     <string name="LanguageName">English</string>
     <string name="English">English</string>
     <string name="LanguageNameInEnglish">English</string>
@@ -1796,8 +1816,8 @@
     <string name="NotificationGroupFew">%1$s sent %3$s to the group %2$s</string>
     <string name="NotificationGroupAlbum">%1$s sent an album to the group %2$s</string>
     <string name="NotificationGroupForwardedFew">%1$s forwarded %3$s to the group %2$s</string>
-    <string name="NotificationHiddenName">Telegram</string>
-    <string name="NotificationHiddenChatName">Telegram</string>
+    <string name="NotificationHiddenName">yeGram</string>
+    <string name="NotificationHiddenChatName">yeGram</string>
     <string name="NotificationHiddenChatUserName">User</string>
     <string name="NotificationHiddenMessage">New message</string>
     <string name="Reply">Reply</string>
@@ -2615,7 +2635,7 @@
     <string name="DirectShareInfo">Show recent chats in Android share menu</string>
     <string name="Emoji">Emoji</string>
     <string name="LargeEmoji">Large Emoji</string>
-    <string name="TelegramVersion">Telegram for Android %1$s</string>
+    <string name="TelegramVersion">Telegram with yeGram for Android %1$s</string>
     <string name="DebugMenu">Debug Menu</string>
     <string name="DebugMenuLongPress">Long press again for debug menu</string>
     <string name="DebugSendLogs">Send Logs</string>
